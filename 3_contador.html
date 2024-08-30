@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables</title>
+    
+    <script>
+        let contador = 0;
+        const tipo_input = 'boton'; 
+        function contar() {
+            // contador = contador + 1;
+            // contador++ 
+            contador += 1;
+            // alert('Cantidad de clicks sobre boton: ' + contador);
+            alert(`Cantidad de clicks sobre ${tipo_input}: ${contador}`);
+        }
+    </script>
+</head>
+<body>
+    <h1>Hola Mundo Javascript</h1>
+    <button onclick="contar()">Contar</button>
+</body>
+</html>

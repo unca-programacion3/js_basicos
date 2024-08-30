@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejadores de eventos</title>
+    <script>
+        let contador = 0;
+        function contar() {
+            // contador = contador + 1;
+            // contador++ 
+            contador += 1;
+            // alert('Cantidad de clicks sobre boton: ' + contador);
+            alert(`Cantidad de clicks sobre boton: ${contador}`);
+        }
+
+        // Definir el manejador de eventos del boton, una vez que se hayan cargado los contenidos de la pagina completa
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('button').onclick = contar; 
+        });
+        
+        
+    </script>
+</head>
+<body>
+    <h1>Hola Mundo Javascript</h1>
+    <button>Contar</button>
+    <!-- esta es otra opcion para q se tome el manejador de eventos, definir la asignacion despues del marcado del boton -->
+    <script>document.querySelector('button').addEventListener('click', contar);</script>
+</body>
+</html>

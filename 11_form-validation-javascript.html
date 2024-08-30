@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validacion Formularios</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Validacion de formularios mediante HTML</h1>
+    <form id="miFormulario" >
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre">
+        <span class="error" id="nombreError"></span>
+        <br><br>   
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena">
+        <span class="error" id="contrasenaError"></span>
+        <br><br>
+        
+        <button type="submit">Enviar</button>
+    </form>
+    <script>
+        document.getElementById('miFormulario').addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (validarFormulario()) {
+                alert('Formulario enviado correctamente');
+                document.getElementById('miFormulario').submit();
+            }
+        });
+        function validarFormulario() {
+            let esValido = true;
+            // Validar nombre: No debe contener más de 3 palabras
+            const nombre = document.getElementById('nombre').value.trim();
+            const nombreError = document.getElementById('nombreError');
+            const nombreWords = nombre.split(/\s+/);
+            if (nombreWords.length > 3) {
+                nombreError.textContent = 'El nombre no puede contener más de tres palabras.';
+                esValido = false;
+            } else {
+                nombreError.textContent = '';
+            }
+            // Validar contraseña: No debe contener secuencias numéricas ascendentes
+            const contrasena = document.getElementById('contrasena').value;
+            const contrasenaError = document.getElementById('contrasenaError');
+            if (contieneSecuenciaNumericaAscendente(contrasena)) {
+                contrasenaError.textContent = '';
+            } else {
+                contrasenaError.textContent = 'La contraseña no debe contener secuencias numéricas ascendentes como "123".';
+                esValido = false;
+            }
+            return esValido;
+        }
+        function contieneSecuenciaNumericaAscendente(contrasena) {
+            // Convertir el texto en una cadena de números (solo dígitos)
+            const digitos = contrasena.replace(/\D/g, ''); // Reemplaza cualquier cosa que no sea dígito con una cadena vacía
+            // Recorre la cadena de dígitos y verifica si hay una secuencia ascendente de 3 números
+            for (let i = 0; i < digitos.length - 2; i++) {
+                const num1 = parseInt(digitos[i], 10);
+                const num2 = parseInt(digitos[i + 1], 10);
+                const num3 = parseInt(digitos[i + 2], 10);
+                // Verificar si los números son secuenciales (num1, num2, num3 forman una secuencia ascendente)
+                if (num1 + 1 === num2 && num2 + 1 === num3) {
+                    return false; // Encontró una secuencia ascendente de 3 números
+                }
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio de estilos CSS con atributo Data</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('button').forEach(boton => {
+                boton.onclick = function() {
+                    document.querySelector('#titulo').style.color = boton.dataset.color;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1 id="titulo">Cambio de estilos CSS con atributo Data</h1>
+    <button data-color="red" id="rojo">Rojo</button>
+    <button data-color="green" id="verde">Verde</button>
+    <button data-color="blue" id="azul"> Azul</button>
+</body>
+</html>

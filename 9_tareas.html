@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas - creacion de nodos</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tarea = document.querySelector('#tarea');
+            
+            // por defecto, el boton está deshabilitado
+            const boton_submit = document.querySelector('#submit')
+            boton_submit.disabled = true;
+            
+            // manejador de evento para cuando se tipee una tecla en el campo "tarea"
+            tarea.onkeyup = () => {
+                if (tarea.value.length > 0) {
+                    boton_submit.disabled = false;
+                } else {
+                    boton_submit.disabled = true;    
+                }
+            }
+
+            document.querySelector('form').onsubmit = () => {
+                //console.log(tarea);
+
+                const item = document.createElement('li')
+                item.innerHTML = tarea.value;
+                document.querySelector('#tareas').append(item)
+
+                tarea.value = '';
+                boton_submit.disabled = true;
+                
+                // Detener envío de datos del formulario al servidor
+                return false;
+            }
+        })
+    </script>
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <ul id="tareas"></ul>
+    <form>
+        <input id="tarea" placeholder="Nueva tarea" type="text">
+        <input id="submit" type="submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambios de estilos CSS</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const titulo = document.querySelector('#titulo')
+          // cambiar el color de fuente a rojo
+          document.querySelector('#rojo').onclick = function() {
+            titulo.style.color = 'red';
+          };
+          // cambiar el color de fuente a verde
+          document.querySelector('#verde').onclick = function() {
+            titulo.style.color = 'green';
+          };
+          // cambiar el color de fuente a azul
+          document.querySelector('#azul').onclick = function() {
+            titulo.style.color = 'blue';
+          };
+        });
+
+    </script>
+</head>
+<body>
+    <h1 id="titulo">Cambios de estilos CSS</h1>
+    <button id="rojo">Rojo</button>
+    <button id="verde">Verde</button>
+    <button id="azul"> Azul</button>
+</body>
+</html>

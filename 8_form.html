@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de Forms</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('form').onsubmit = function() {
+                //document.querySelector('#name')
+                const nombre = document.getElementById('name').value;
+                alert(`Hola, ${nombre}!`);
+                return false;
+            };
+        });
+    </script>
+</head>
+<body>
+    <h1>Manejo de Formularios</h1>
+    <form action="">
+        <label for="name">Nombre: </label>
+        <input autofocus id="name" type="text">
+        <input type="submit" value="Aceptar">
+    </form>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+        <title>Funciones en JavaScript</title>
+    </head>
+    <body>
+        <h2>Ver resultados en la consola (F12)</h2>
+        <script>
+            // --- FUNCIÓN DECLARADA ---
+            // Esta función se puede llamar incluso antes de estar escrita en el código, por el hoisting.
+            function calcularPromedio(numeros) {
+                let suma = 0;
+                for (let n of numeros) {
+                    suma += n;
+                }
+                return suma / numeros.length;
+            }
+
+            // --- FUNCIÓN COMO EXPRESIÓN (ANÓNIMA) ---
+            // Uso de "..." parametros rest para aceptar cantidad indefinida de parámetros
+            // Iteramos con forEach y usamos una función flecha como callback para filtrar los números impares.
+            const filtrarImpares = function(...numeros) {
+                console.log("Parámetros recibidos:", numeros);
+
+                let impares = [];
+                numeros.forEach(n => {
+                    if (n % 2 !== 0) {
+                        impares.push(n);
+                    }
+                });
+                return impares;
+            };
+
+            // --- PROBAMOS ---
+            let numeros = [3, 6, 9, 12, 15];
+
+            console.log("Array original:", numeros);
+
+            // en este caso se envia un array ala funcion    
+            let promedio = calcularPromedio(numeros);
+            console.log("Promedio:", promedio);
+
+            console.log("\n=== Usando filtrarImpares con cantidad variable de parámetros ===");
+            // en estos casos se envian diferentes argumentos separados por una coma    
+            console.log("Impares (3,4,5,6,7):", filtrarImpares(3, 4, 5, 6, 7));
+            console.log("Impares (10,21):", filtrarImpares(10, 21));
+            console.log("Impares (ninguno):", filtrarImpares()); // recibe vacío → []
+
+            
+        </script>
+    </body>
+</html>

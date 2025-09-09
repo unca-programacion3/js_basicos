@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manejo de errores personalizados</title>
+    </head>
+
+    <body>
+        <h1>Errores personalizados</h1>
+        <p>Por favor ingrese un numero entre 5 y 10:</p>
+        <input id="demo" type="text">
+        <button type="button" onclick="verificar_numero()">Verificar</button>
+        <p id="msj"></p>
+
+        <script>
+            function verificar_numero() {
+                let p=document.getElementById("msj");
+                p.style.color = 'black'
+                try { 
+                    let x=document.getElementById("demo").value;
+                    if(x=="") throw "Dato vacío";
+                    if(isNaN(x)) throw "No es un numero válido";
+                    if(x>10) throw "Numero muy alto";
+                    if(x<5) throw "Numero muy bajo";
+                    p.innerHTML = "El numero ingresado es correcto."
+                }
+                catch(err) {
+                    p.innerHTML=`Error: ${err}.`
+                    p.style.color = 'red'
+                }
+            }
+        </script>
+    </body>
+</html>

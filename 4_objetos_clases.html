@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetos y Clases</title>
+</head>
+<body>
+    <h1>Interaccion de objetos y clases</h1>
+    <script>
+        // Objeto literal simple
+        const libro = {
+            titulo: "Cien años de soledad",
+            autor: "Gabriel García Márquez",
+            paginas: 471
+        };
+        console.log("Libro:", libro);
+
+        // Clase con métodos 
+        class Biblioteca {
+            constructor() {
+                this.catalogo = [];
+            }
+
+            agregarLibro(libro) {
+                this.catalogo.push(libro);
+            }
+
+            buscarPorMinimasPaginas(minPaginas) {
+                
+                let encontrados = [];
+                for (let l of this.catalogo) {
+                    if (l.paginas >= minPaginas) {
+                        encontrados.push(l.titulo);
+                    }
+                }
+                
+                if (encontrados.length > 0) {
+                    console.log("Libros con", minPaginas, "páginas o más:", encontrados);
+                } else {
+                    console.log("No hay libros con tantas páginas.");
+                }
+            }
+        }
+
+        // Uso
+        let miBiblioteca = new Biblioteca();
+        miBiblioteca.agregarLibro(libro);
+        miBiblioteca.agregarLibro({ titulo: "El principito", autor: "Saint-Exupéry", paginas: 95 });
+
+        miBiblioteca.buscarPorMinimasPaginas(100); // muestra solo el primero
+        miBiblioteca.buscarPorMinimasPaginas(500); // muestra mensaje de else
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8" />
+    <title>DOM básico: seleccionar, crear, recorrer, modificar</title>
+    <style>
+        .tarjeta { border:1px solid #ccc; padding:8px; margin:6px 0; border-radius:8px; }
+        .resaltado { background: #ffeeaa; }
+    </style>
+    </head>
+    <body>
+        <main id="app">
+            <h2 id="titulo">Listado</h2>
+            <section class="contenedor">
+                <p class="tarjeta">Elemento A</p>
+                <p class="tarjeta">Elemento B</p>
+                <p class="tarjeta">Elemento C</p>
+            </section>
+        </main>
+        <script>
+            console.clear();
+            console.log("=== 1) OBTENER ELEMENTOS ===");
+            const app = document.getElementById("app");                 // por id
+            const tarjetas = document.querySelectorAll(".tarjeta");      // CSS selector
+            const contenedor = document.querySelector("section.contenedor");
+            console.log({ app, tarjetas: tarjetas.length, contenedor });
+    	    console.log(tarjetas[0]);	// cada elemento es un tipo de nodo con sus propiedades
+
+            console.log("\n=== 2) CREAR NODOS Y AGREGARLOS ===");
+            const nuevaP = document.createElement("p");                  // nodo Element
+            nuevaP.className = "tarjeta";
+            nuevaP.textContent = "Elemento D (creado con createElement + textContent)";
+            contenedor.appendChild(nuevaP);                              // agrega al final
+            console.log("Se agregó:", nuevaP.outerHTML);
+
+            // crear con innerHTML (cuando te sirve construir varios nodos hijos)
+            const bloque = document.createElement("div");
+            bloque.innerHTML = `<p class="tarjeta">Elemento E</p><p class="tarjeta">Elemento F</p>`;
+            contenedor.append(bloque); // append admite múltiples tipos (nodos/cadenas)
+            console.log("Se agregó bloque con innerHTML:", bloque.outerHTML);
+
+            console.log("\n=== 3) RECORRER NODOS (children, first/next) ===");
+            // children: solo elementos (ignora nodos de texto/espacios)
+            
+            for (const el of contenedor.children) { 
+                console.log(`child ${el.tagName} -> ${el.textContent.trim()}`)
+            };
+
+            // navegación básica
+            const primero = contenedor.firstElementChild;
+            const segundo = primero.nextElementSibling;
+            console.log("Primero:", primero.textContent.trim(), "| Siguiente:", segundo.textContent.trim());
+
+            console.log("\n=== 4) CAMBIAR CONTENIDO, ESTILO y CLASES ===");
+            const titulo = document.querySelector("#titulo");
+            titulo.textContent = "Listado (actualizado por JS)";
+            // estilos inline (ejemplo mínimo)
+            segundo.style.color = "darkgreen";
+            segundo.style.fontWeight = "bold";
+            // classList para clases CSS
+            segundo.classList.add("resaltado");
+            console.log("Modificado:", segundo.outerHTML);
+
+            console.log("\n=== 5) ATRIBUTOS (get/set/toggle) ===");
+            // setAttribute / getAttribute
+            primero.setAttribute("data-categoria", "importante");
+            console.log("data-categoria de primero:", primero.getAttribute("data-categoria"));
+            // toggle de clase
+            primero.classList.toggle("resaltado"); // si no la tiene, la agrega
+            console.log("Primero con toggle 'resaltado':", primero.outerHTML);
+
+            console.log("\n=== 6) INSERTAR EN POSICIÓN, REEMPLAZAR y ELIMINAR ===");
+            // insertBefore: insertar antes de un nodo concreto
+            const x = document.createElement("p");
+            x.className = "tarjeta";
+            x.textContent = "Elemento X (insertado antes del segundo)";
+            contenedor.insertBefore(x, segundo);
+            console.log("Insertado X:", x.outerHTML);
+
+            // replaceChild: reemplazar un nodo por otro
+            const reemplazo = document.createElement("p");
+            reemplazo.className = "tarjeta";
+            reemplazo.textContent = "Elemento B (reemplazado)";
+            contenedor.replaceChild(reemplazo, segundo);
+            console.log("Reemplazado B →", reemplazo.outerHTML);
+
+            // remove(): eliminar un nodo
+            const ultimo = contenedor.lastElementChild;
+            ultimo.remove();
+            console.log("Eliminado último elemento. Ahora hijos:", contenedor.children.length);
+
+            console.log("\n=== 7) CLONAR NODOS ===");
+            const clon = reemplazo.cloneNode(true); // true: clona con hijos
+            clon.textContent = "Clon de B";
+            contenedor.appendChild(clon);
+            console.log("Clonado:", clon.outerHTML);
+
+            console.log("\nFIN MANEJO DE DOM");
+        </script>
+        
+    </body>
+</html>

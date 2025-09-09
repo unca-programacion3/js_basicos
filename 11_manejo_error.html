@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de errores</title>
+    <script>
+      let txt;
+      function message() {
+        try {
+          alert("Bienvenido!");
+          document.querySelector('p').style.backgroundColor = 'lightgrey'
+        }
+        catch(err) {
+          txt=`Se produjo un error en la pagina.\n\n
+              Descripcion del Error: ${err.message} \n\n
+              Aqui se interrumpe la ejecución del bloque try.`
+          alert(txt);
+        }
+      }
+    </script>
+</head>
+
+<body>
+  <input type="button" value="Ver Mensaje" onclick="message()">
+  <br><br>
+  <p>Un parrafo.</p>
+</body>
+
+</html>

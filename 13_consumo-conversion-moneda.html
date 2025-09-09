@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversión de Moneda con Base en Dolar usando API Fetch</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('form').onsubmit = () => {
+                fetch('https://api.exchangerate-api.com/v4/latest/USD')
+                .then(response => response.json())
+                .then(data => {
+                    const moneda = document.querySelector('#moneda').value;
+                    const tasa = data.rates[moneda];
+                    if (tasa !== undefined) {
+                        document.querySelector('#resultado').innerHTML = `1 Dolar es igual a ${tasa} ${moneda}`;
+                    } else {
+                        document.querySelector('#resultado').innerHTML = 'Moneda inválida';
+                    }
+                })
+                .catch(error => {
+                    console.log('Error: ', error);
+                });   
+                return false;
+            }
+        })
+    </script>
+</head>
+<body>
+    <h1>Conversion de Monedas con base en Dolar</h1>
+    <form>
+        <label>Seleccione una Moneda para hacer la conversion a Dólar</label>
+        <select id="moneda" name="moneda" id="moneda">
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - Libra esterlina</option>
+            <option value="ARS">ARS - Peso argentino</option>
+            <option value="BRL">BRL - Real brasileño</option>
+            <option value="CLP">CLP - Peso chileno</option>
+        </select>
+        <input type="submit" value="Convertir">
+    </form>
+    <div id="resultado">
+
+    </div>
+    
+</body>
+</html>

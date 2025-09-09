@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos Javascript</title>
+    <script>
+        function cambiar_titulo(boton) {
+            const encabezado = document.querySelector('h1');
+            encabezado.innerText='Comencemos!!'
+            boton.disabled=true;
+        }
+    </script>
+</head>
+<body onload="alert('La página se ha cargado completamente');">
+    <h1>Hola Mundo Eventos en Javascript</h1>
+    <button onclick="cambiar_titulo(this);">Click aqui</button>
+</body>
+</html>

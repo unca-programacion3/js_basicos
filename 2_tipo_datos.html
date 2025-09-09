@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tipos de Datos y Variables en JavaScript</title>
+    </head>
+    <body>
+    <h2>Ver resultados en la consola (F12)</h2>
+        <script>
+            // Declaración de variables con let
+            let nombre = "Ana";       // string
+            let edad = 20;            // number
+            let texto = `${nombre} tiene ${edad} años`;
+            let estudiante = true;    // boolean
+            let indefinido;           // undefined (no tiene valor asignado todavía)
+            let nulo = null;          // null (ausencia intencional de valor)
+
+            // Declaración de constante
+            const PI = 3.1416;        // constante numérica
+
+            // Mostrar en consola
+            console.log("STRING:", nombre, "→ typeof:", typeof nombre);
+            console.log("NUMBER:", edad, "→ typeof:", typeof edad);
+            console.log("Texto: ", texto)
+            console.log("BOOLEAN:", estudiante, "→ typeof:", typeof estudiante);
+            console.log("UNDEFINED:", indefinido, "→ typeof:", typeof indefinido);
+            console.log("NULL:", nulo, "→ typeof:", typeof nulo); // devuelve "object" 
+            console.log("CONSTANTE:", PI, "→ typeof:", typeof PI);
+
+            // Cambios de valores en variables y constantes
+            console.log("¿Se puede cambiar el valor de 'edad'? Sí.");
+            edad = 21;
+            console.log("Nueva edad:", edad);
+
+            console.log("¿Se puede cambiar el valor de 'PI'? No, generará error si intentamos hacerlo.");
+            // PI = 3.14; // ← Si descomento, da error: "Assignment to constant variable."
+
+            console.log("\n=== Diferencia entre undefined y null ===");
+            // undefined: creado automáticamente cuando una variable existe pero no se inicializó
+            let x;
+            console.log("x =", x, "→ typeof:", typeof x);
+
+            // null: valor asignado intencionalmente para indicar "vacío"
+            let y = null;
+            console.log("y =", y, "→ typeof:", typeof y);
+
+            // Comparaciones
+            console.log("x == y:", x == y);     // true → porque JS hace conversión de tipos
+            console.log("x === y:", x === y);   // false → porque son tipos distintos
+
+
+        </script>
+    </body>
+</html>
